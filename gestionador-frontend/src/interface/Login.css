@@ -1,0 +1,26 @@
+.login{
+    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 450px;
+    background-color: #2e86c1 ;
+    border-radius: 10px;
+}
+.login-form{
+    gap:5px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+}
+.encabezado-text{
+    font-size: 30px;
+
+    font-weight: bold;
+    font-family: Arial;
+    margin-top: -70px;
+    margin-bottom: 80px;
+}
