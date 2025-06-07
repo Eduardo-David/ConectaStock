@@ -1,7 +1,7 @@
 import './Login.css';
 import { useEffect, useState } from 'react';
 
-export function Login({text,svg}) {
+export default function Login({text,svg}) {
 
     const [form, setForm]=useState({
         username:'',
