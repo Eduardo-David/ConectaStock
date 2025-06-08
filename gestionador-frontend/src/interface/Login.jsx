@@ -28,7 +28,7 @@ export default function Login({text,svg}) {
                 <label htmlFor="password">Contraseña</label>
                 <input type="password" id="password" name="password" required onChange={handleChange}/>
         
-                <button type="submit" onClick={()=>{console.log("hola",toString(form));}}>Iniciar Sesión</button>
+                <button type="submit">Iniciar Sesión</button>
             </form>
         </section>
     )
