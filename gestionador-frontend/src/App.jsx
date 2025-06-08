@@ -1,7 +1,7 @@
 import './App.css';
 import { CardCount } from './components/CardCount.jsx';
 import {Route, Routes} from 'react-router-dom'
-import { Login } from './interface/Login.jsx';
+import Login from './interface/Login.jsx';
 import { TiendaIcon, ProveedorIcon } from './assets/icons.jsx';
 
 
