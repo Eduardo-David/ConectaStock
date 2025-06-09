@@ -3,6 +3,7 @@ import { CardCount } from './components/CardCount.jsx';
 import {Route, Routes} from 'react-router-dom'
 import Login from './interface/Login.jsx';
 import { TiendaIcon, ProveedorIcon } from './assets/icons.jsx';
+import Register from './interface/Register.jsx';
 
 
 export  function App() {
@@ -15,6 +16,12 @@ export  function App() {
                     <CardCount />
                 </section>
                 } 
+            />
+
+            <Route
+                path='/register' element={
+                    <Register/>
+                }
             />
 
             <Route 

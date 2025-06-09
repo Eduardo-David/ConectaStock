@@ -29,6 +29,10 @@ export default function Login({text,svg}) {
                 <input type="password" id="password" name="password" required onChange={handleChange}/>
         
                 <button type="submit">Iniciar Sesión</button>
+                <div>
+                    <p>¿No tienes cuenta? <a href="/register">Regístrate</a></p>
+                </div>
+                
             </form>
         </section>
     )
