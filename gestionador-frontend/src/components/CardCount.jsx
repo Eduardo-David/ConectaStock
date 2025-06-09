@@ -6,17 +6,17 @@ export function CardCount(){
     const navigate = useNavigate();
     return(
     
-        <header className='cardCount-header'>
-            <button className='cardProveedor'
+        <header className='flex items-center justify-center gap-10'>
+            <button className='flex flex-col justify-center border-2 rounded-2xl bg-blue-700 h-50 w-50 items-center'
                 onClick={()=>{navigate('/loginProveedor')}
             }>
-                <h1>Proveedor</h1>
+                <h1 className='font-sans font-bold text-xl'>Proveedor</h1>
                 <ProveedorIcon/>
             </button>
-            <button className='cardTienda'
+            <button className='flex flex-col justify-center border-2 rounded-2xl bg-blue-700 h-50 w-50 items-center'
                 onClick={()=>{navigate('/loginTienda')}}
             >
-                <h1>Tienda</h1>
+                <h1 className='font-sans font-bold text-xl'>Tienda</h1>
                 <TiendaIcon/>
             </button>
         </header>

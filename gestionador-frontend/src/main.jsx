@@ -10,7 +10,10 @@ const root = ReactDoom.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App/>
+      <div className='bg-blue-300 flex items-center justify-center h-screen'>
+        <App/>
+      </div>
     </BrowserRouter>
   </React.StrictMode>
 )
+
