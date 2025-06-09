@@ -7,3 +7,6 @@ export const pool = new pg.Pool({
     password:"1234",
     port:5432
 })
+pool.query('SELECT NOW()').then(res => {
+    console.log(res)
+})
