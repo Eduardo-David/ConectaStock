@@ -1,9 +1,9 @@
 import './App.css';
 import { CardCount } from './components/CardCount.jsx';
 import {Route, Routes} from 'react-router-dom'
-import Login from './interface/Login.jsx';
+import Login from './page/Login.jsx';
 import { TiendaIcon, ProveedorIcon } from './assets/icons.jsx';
-import Register from './interface/Register.jsx';
+import Register from './page/Register.jsx';
 
 
 export  function App() {

@@ -1,10 +1,27 @@
 import { useEffect, useState } from 'react';
 import './Register.css';
 import { useNavigate } from 'react-router-dom';
+import {registerRequest} from '../api/auth.js';
+import Respuesta from '../components/Repuesta.jsx';
 
 export default function Register() {
 
     const navigate = useNavigate();
+    const [valido, setValido] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await registerRequest(form); // formData es tu objeto con los datos del formulario
+            setValido(true); // Registro exitoso
+            setTimeout(() => {
+                navigate('/');
+            },2000);
+        } catch (error) {
+        setValido(false); // Registro fallido
+        }
+    }
+
 
     const [form, setForm]=useState({
         name:'',
@@ -20,12 +37,13 @@ export default function Register() {
             ...form,
             [name]: value
         }));  
+        setValido(null); // Reiniciar el estado de valido al cambiar el formulario
     }
-        
+
     return (
         <section className="relative flex flex-col items-center justify-center bg-blue-600 w-90 h-130 border-2 rounded-3xl">
             <h1 className='font-bold text-4xl mb-7'>Registro</h1>
-            <form className="flex flex-col gap-3  w-80">
+            <form className="flex flex-col gap-3  w-80" onSubmit={handleSubmit}>
                 <label htmlFor="usuarioname" className='font-sans text-lg'>☛nombre de usuario</label>
                 <input type="text" id="username" name='name' className='rounded-sm bg-blue-400
                 border-2' required onChange={handleChange}/>
@@ -35,7 +53,7 @@ export default function Register() {
                 border-2' required onChange={handleChange}/>
         
                 <label htmlFor="ci" className='font-sans text-lg'>☛Carnet de identidad</label>
-                <input type="text" id="ci" name='name-ci'className='rounded-sm bg-blue-400
+                <input type="text" id="ci" name='ci'className='rounded-sm bg-blue-400
                 border-2' required onChange={handleChange}/>
 
                 <label htmlFor="telefono" className='font-sans text-lg'>☛Numero de telefono</label>
@@ -45,13 +63,14 @@ export default function Register() {
                 <label for="role-select" className='font-sans text-lg'>☛Tipo de usuario:</label>
                     <select name="role" id="role-select" className="bg-blue-200 border-2" onChange={handleChange}>
                     <option value="">--Seleccione un rol--</option>
-                    <option value="vendedo">Vendedor</option>
+                    <option value="vendedor">Vendedor</option>
                     <option value="proveedor">Proveedor</option>
                     </select>
-
-                <button type="submit" className='font-sans font-bold border-2 relative  bg-blue-200 w-30 rounded-sm h-10' onClick={()=>{navigate('/')}}>Crear cuenta</button>
-
+                <button type="submit" className='font-sans font-bold border-2 relative  bg-blue-200 w-30 rounded-sm h-10'>
+                    Crear cuenta
+                </button>
             </form>
+            {valido !== null && <Respuesta valido={valido} className="relative top-2"/>}
         </section>
     )
 }
