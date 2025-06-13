@@ -4,6 +4,8 @@ import {Route, Routes} from 'react-router-dom'
 import Login from './page/Login.jsx';
 import { TiendaIcon, ProveedorIcon } from './assets/icons.jsx';
 import Register from './page/Register.jsx';
+import ProveedorInterface from './page/ProveedorInterface.jsx';
+import VendedorInterface from './page/VendedroInterface.jsx'; 
 
 
 export  function App() {
@@ -16,6 +18,17 @@ export  function App() {
                     <CardCount />
                 </section>
                 } 
+            />
+            <Route
+                path="/loginProveedor/proveedorInterface" element={
+                    <ProveedorInterface />
+                }
+            />
+
+            <Route
+                path="/loginTienda/vendedorInterface" element={
+                    <VendedorInterface />
+                }
             />
 
             <Route
