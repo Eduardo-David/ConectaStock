@@ -10,7 +10,7 @@ export default function Register() {
     const [valido, setValido] = useState(null);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault();// Evitar el comportamiento por defecto del formulario
         try {
             await registerRequest(form); // formData es tu objeto con los datos del formulario
             setValido(true); // Registro exitoso
@@ -41,9 +41,13 @@ export default function Register() {
     }
 
     return (
-        <section className="relative flex flex-col items-center justify-center bg-blue-600 w-90 h-130 border-2 rounded-3xl">
-            <h1 className='font-bold text-4xl mb-7'>Registro</h1>
-            <form className="flex flex-col gap-3  w-80" onSubmit={handleSubmit}>
+        <main className="grid grid-cols-3 grid-rows-3 h-screen w-screen">
+            <button className='col-start-1 row-start-1 bg-blue-700 font-sans justify-self-start self-start ml-5 mt-5
+            h-auto max-w-min w-full p-3 border-2 rounded-2xl font-bold text-2xl' onClick={
+                () => navigate('/')
+            }>⬅Volver</button>
+            <form className="grid grid-cols-1 col-start-2 row-start-2 gap-2 max-w-md w-full px-5 py-10 h-auto bg-blue-600 justify-self-center self-center items-center  border-2 rounded-xl" onSubmit={handleSubmit}>
+                <h1 className='relative font-bold text-4xl left-1'>Registro</h1>
                 <label htmlFor="usuarioname" className='font-sans text-lg'>☛nombre de usuario</label>
                 <input type="text" id="username" name='name' className='rounded-sm bg-blue-400
                 border-2' required onChange={handleChange}/>
@@ -71,6 +75,6 @@ export default function Register() {
                 </button>
             </form>
             {valido !== null && <Respuesta valido={valido} className="relative top-2"/>}
-        </section>
+        </main>
     )
 }
