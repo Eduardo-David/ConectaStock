@@ -15,7 +15,8 @@ export async function createUser(name, password, ci, telefono,role){
 }
 
 export async function existePassword(name, password){
-    const result = await pool.query('SELECT password FROM usuario WHERE name = $1 LIMIT 1;', [name]);
+    const result = await pool.query('SELECT password FROM usuario WHERE name = $1 LIMIT 1;', [name]);//Eduardo
+    console.log(result);
     if (result.rows.length > 0) {
         const isMatch = await bcrypt.compare(password, result.rows[0].password);
         return isMatch;
@@ -25,7 +26,6 @@ export async function existePassword(name, password){
 
 export async function getIdByName(name) {
     const result = await pool.query('SELECT id_usuario FROM usuario WHERE name = $1 LIMIT 1;', [name]);
-    console.log(result);
     if (result.rows.length > 0) {
         return { id: result.rows[0].id_usuario};
     }

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './Register.css';
 import { useNavigate } from 'react-router-dom';
 import {registerRequest} from '../api/auth.js';
 import Respuesta from '../components/Repuesta.jsx';

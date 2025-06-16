@@ -1,4 +1,3 @@
-import './cardCount.css';
 import {TiendaIcon, ProveedorIcon} from '../assets/icons.jsx';
 import {useNavigate} from 'react-router-dom';
 

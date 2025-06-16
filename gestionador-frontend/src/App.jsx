@@ -39,12 +39,12 @@ export  function App() {
 
             <Route 
                 path="/loginProveedor" element={
-                    <Login text='Proveedor' svg={<ProveedorIcon/>} />
+                    <Login text='proveedor' svg={<ProveedorIcon/>} />
                 }/>
 
             <Route 
                 path='/loginTienda' element={
-                    <Login text='Tienda' svg={<TiendaIcon/>} />
+                    <Login text='vendedor' svg={<TiendaIcon/>} />
                 }
             />
         </Routes>

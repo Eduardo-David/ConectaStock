@@ -3,29 +3,30 @@ import { loginRequest } from '../api/auth';
 import { useNavigate } from 'react-router-dom';
 import Respuesta from '../components/Repuesta';
 
-export default function Login({text,svg}) {
+export default function Login({ text, svg }) {
 
     const navigate = useNavigate();
     const [valido, setValido] = useState(null);
 
-    const [form, setForm]=useState({
-        username:'',
-        password:'',
+    const [form, setForm] = useState({
+        name: '',
+        password: '',
         role: text
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
+        try {
             await loginRequest(form);
             setValido(true);
-            setTimeout(()=>{
-            if (form.role === 'Vendedor') {
-                navigate('/loginTienda/vendedorInterface');
-            } else if (form.role === 'Proveedor') {
-                navigate('/loginProveedor/proveedorInterface');
-            }},2000);
-        }catch (error) {
+            setTimeout(() => {
+                if (form.role === 'vendedor') {
+                    navigate('/loginTienda/vendedorInterface');
+                } else if (form.role === 'proveedor') {
+                    navigate('/loginProveedor/proveedorInterface');
+                }
+            }, 2000);
+        } catch (error) {
             setValido(false);
             console.error("Error during login:", error);
         }
@@ -33,28 +34,38 @@ export default function Login({text,svg}) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setForm(form =>({
+        setForm(form => ({
             ...form,
             [name]: value
         }));
-        setValido(null);  
+        setValido(null);
     }
-        
+
     return (
-        <main className="relative flex flex-col items-center justify-center bg-blue-600 w-70 h-100 border-2 rounded-3xl">
-            <h1 className='absolute font-sans font-bold text-2xl top-5'>{text}</h1>
-            {svg}
-            <form className="grid grid-cols-1 gap-2" onSubmit={handleSubmit}>
-                <label htmlFor="usuario">Usuario</label>
-                <input type="text" id="email" name="username" className='rounded-sm bg-white placeholder-gray-500 border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5' required onChange={handleChange}/>
-                
-                <label htmlFor="password">Contraseña</label>
-                <input type="password" id="password" name="password" className='rounded-sm bg-white placeholder-gray-500 border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5' required onChange={handleChange}/>
-        
-                <button type="submit" className='bg-blue-400 rounded-sm w-30 font-bold'>Iniciar Sesión</button>
-                    <p>¿No tienes cuenta? <a href="/register" className='font-bold underline'>Regístrate</a></p>
+        <main className="grid grid-cols-3 grid-rows-3 w-screen h-screen">
+            <div className='col-start-2 row-start-1 self-start justify-self-center h-auto w-auto mt-2'>
+                {valido !== null && <Respuesta valido={valido} className="relative top-2" />}
+            </div>
+            <form className="col-start-2 row-start-1 row-span-3  self-center justify-self-center flex flex-col bg-blue-600 border-2 rounded-3xl h-auto w-auto p-5 gap-4" onSubmit={handleSubmit}>
+                <h1 className='row-start-1 col-start-1 font-sans font-bold text-2xl justify-self-center self-center h-auto w-auto'>{text}</h1>
+                <div className='row-start-2 justify-self-center self-center h-auto w-auto'>
+                    {svg}
+                </div>
+                <label htmlFor="usuario" className='h-auto w-auto'>Usuario</label>
+                <input type="text" id="email" name="name" className='rounded-sm bg-white placeholder-gray-500 border-gray-300 focus:ring-gray-500 focus:border-gray-500  h-auto w-auto' required onChange={handleChange} />
+
+                <label htmlFor="password" className='h-auto w-auto'>
+                    Contraseña</label>
+                <input type="password" id="password" name="password" className='rounded-sm bg-white placeholder-gray-500 border border-gray-300 focus:ring-gray-500 focus:border-gray-500 h-auto w-auto' required onChange={handleChange} />
+
+                <button type="submit" className='bg-blue-400 rounded-sm w-auto font-bold h-auto'>Iniciar Sesión</button>
+                <p>
+                    ¿No tienes cuenta?
+                    <a href="/register" className='font-bold underline'>
+                        Regístrate
+                    </a>
+                </p>
             </form>
-            {valido !== null && <Respuesta valido={valido} className="relative top-2"/>}
         </main>
     )
 }

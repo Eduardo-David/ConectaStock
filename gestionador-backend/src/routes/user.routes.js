@@ -37,12 +37,13 @@ router.post("/user/login", async (req, res) => {
     try{
         if(idExists && roleExists && passwordExists){
             const  token = jwt.sign({ id: getIdByName(name), username: name },SECRET_JWT_TOKEN, { expiresIn: '1h' })
-            .res.cookie('acces_token',token,{
+            res.cookie('acces_token',token,{
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production', // Asegúrate de que esto sea true en producción
                 sameSite: 'strict', // Asegúrate de que esto sea 'strict' o 'lax' según tus necesidades
             });
             res.status(200).json({ success: true, message: "Inicio de sesión exitoso"});
+            return;
         }else{
             return res.status(401).json({ success: false, message: "Credenciales incorrectas" });
         }
