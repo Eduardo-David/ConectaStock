@@ -1,4 +1,3 @@
-import './App.css';
 import { CardCount } from './components/CardCount.jsx';
 import {Route, Routes} from 'react-router-dom'
 import Login from './page/Login.jsx';

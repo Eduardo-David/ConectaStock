@@ -9,7 +9,7 @@ export default function Login({ text, svg }) {
     const [valido, setValido] = useState(null);
 
     const [form, setForm] = useState({
-        name: '',
+        username: '',
         password: '',
         role: text
     })
@@ -17,6 +17,7 @@ export default function Login({ text, svg }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(form);
             await loginRequest(form);
             setValido(true);
             setTimeout(() => {
@@ -51,8 +52,8 @@ export default function Login({ text, svg }) {
                 <div className='row-start-2 justify-self-center self-center h-auto w-auto'>
                     {svg}
                 </div>
-                <label htmlFor="usuario" className='h-auto w-auto'>Usuario</label>
-                <input type="text" id="email" name="name" className='rounded-sm bg-white placeholder-gray-500 border-gray-300 focus:ring-gray-500 focus:border-gray-500  h-auto w-auto' required onChange={handleChange} />
+                <label htmlFor="username" className='h-auto w-auto'>Usuario</label>
+                <input type="text" id="username" name="username" className='rounded-sm bg-white placeholder-gray-500 border-gray-300 focus:ring-gray-500 focus:border-gray-500  h-auto w-auto' required onChange={handleChange} />
 
                 <label htmlFor="password" className='h-auto w-auto'>
                     Contraseña</label>

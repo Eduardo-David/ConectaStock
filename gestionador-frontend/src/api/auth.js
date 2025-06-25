@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "http://localhost:8080";
 
 export const registerRequest = async (user) => {
   const response = await fetch(`${API}/user/create`, {
@@ -23,11 +23,13 @@ export const loginRequest = async (credentials) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
-    credentials: 'include', // Asegúrate de incluir las cookies en la solicitud
+    //credentials: 'include', // Asegúrate de incluir las cookies en la solicitud
   });
 
   if (!response.ok) {
     throw new Error("Failed to login");
   }
-  return await response.json();
+  const data = await response.json();
+  console.log(data.token);
+  return data;
 }
