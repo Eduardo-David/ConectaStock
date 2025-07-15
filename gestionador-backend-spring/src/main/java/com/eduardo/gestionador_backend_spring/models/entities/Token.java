@@ -38,6 +38,7 @@ public class Token implements Serializable {
     @Column(unique = true)
     private String token;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private TokenType tokenType = TokenType.BEARER;
 
