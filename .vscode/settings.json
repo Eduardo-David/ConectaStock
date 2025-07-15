@@ -3,6 +3,7 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     // ... tus otras configuraciones
     "errorLens.excludeByMessage": [
-        "OSS support for Spring Boot"
+        "OSS support for Spring Boot",
+        "Newer minor version of Spring Boot available"
     ]
 }
