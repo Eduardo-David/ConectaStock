@@ -19,8 +19,10 @@ import com.eduardo.gestionador_backend_spring.models.repositories.TokenRepositor
 import com.eduardo.gestionador_backend_spring.models.repositories.UserRepository;
 
 import jakarta.annotation.Nonnull;
+import jakarta.transaction.Transactional;
 
 @Service
+@Transactional
 public class UserService {
 
     @Autowired
@@ -34,7 +36,6 @@ public class UserService {
         final Token token = Token.builder()
                 .user(user)
                 .token(jwtToken)
-                .tokenType(Token.TokenType.BEARER)
                 .isExpired(false)
                 .isRevoked(false)
                 .build();
@@ -62,9 +63,9 @@ public class UserService {
                 new UsernamePasswordAuthenticationToken(
                         request.name(),
                         request.password()));
-        final User user = repository.findByName(request.name()).orElseThrow(() -> new UsernameNotFoundException("No se existe el usuario"));    
+        final User user = repository.findByName(request.name()).orElseThrow(() -> new UsernameNotFoundException("No existe el usuario"));    
         if (user == null) {
-            throw new UsernameNotFoundException("No se existe el usuario");
+            throw new UsernameNotFoundException("No existe el usuario");
         }
         final String accessToken = jwtService.generateToken(user);
         final String refreshToken = jwtService.generateRefreshToken(user);
